@@ -1,0 +1,18 @@
+{
+  "name": "wader",
+  "version": "0.0.1",
+  "description": "The migration endpoint for IndieHosters infrastructure",
+  "main": "index.js",
+  "dependencies": {
+    "archiver": "^1.0.0",
+    "express": "^4.13.4",
+    "request": "^2.71.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node index.js":
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Pierre",
+  "license": "LGPL-3.0"
+}
