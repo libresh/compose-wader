@@ -17,6 +17,7 @@ var archive = function(res, domain) {
   var archive = archiver('zip');
 
   archive.on('error', function(err) {
+    console.log('error in archive:\n\n' + err);
     res.status(500).send({error: err.message});
   });
 
