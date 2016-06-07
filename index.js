@@ -34,7 +34,7 @@ app.get('/:type(download|migrate)/:hash', function(req, res) {
   if (req.params.type === 'download') {
     archive(res, domain(res, req.params.hash));
   } else if (req.params.type === 'migrate') {
-    request('http://172.17.0.1:8080/' + req.params.hash, function (error, response, body) {
+    request('http://172.17.42.1:8080/' + req.params.hash, function (error, response, body) {
       if (!error && response.statusCode == 200) {
         archive(res, domain(res, req.params.hash));
       } else {
