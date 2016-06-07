@@ -35,7 +35,7 @@ app.get('/:type(download|migrate)/:hash', function(req, res) {
     archive(res, domain(res, req.params.hash));
   } else if (req.params.type === 'migrate') {
     request('http://172.17.42.1:8080/' + req.params.hash, function (error, response, body) {
-      if (!error && response.statusCode == 200) {
+      if (!error && response.statusCode === 200) {
         archive(res, domain(res, req.params.hash));
       } else {
         res.status(500).send({ error: 'Migration failed.' });
