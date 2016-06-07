@@ -5,7 +5,7 @@ var fs = require('fs');
 var request = require('request');
 var p = require('path');
 
-var domain = function(res, hash) {
+var getDomain = function(res, hash) {
   if (config[hash]) {
     return config[hash];
   } else {
@@ -13,7 +13,7 @@ var domain = function(res, hash) {
   }
 }
 
-var archive = function(res, domain) {
+var archiveIt = function(res, domain) {
   var archive = archiver('zip');
 
   archive.on('error', function(err) {
@@ -31,12 +31,13 @@ var archive = function(res, domain) {
 }
 
 app.get('/:type(download|migrate)/:hash', function(req, res) {
+  var domain = getDomain(res, req.params.hash);
   if (req.params.type === 'download') {
-    archive(res, domain(res, req.params.hash));
+    archiveIt(res, domain);
   } else if (req.params.type === 'migrate') {
     request('http://172.17.42.1:8080/' + req.params.hash, function (error, response, body) {
       if (!error && response.statusCode === 200) {
-        archive(res, domain(res, req.params.hash));
+        archiveIt(res, domain);
       } else {
         res.status(500).send({ error: 'Migration failed.' });
       }
