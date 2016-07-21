@@ -10,3 +10,4 @@ app:
   image: indiehosters/wader
   volumes:
     - /data/domains:/data/domains:ro
+    - ./config.json:/usr/src/app/config.json
