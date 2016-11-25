@@ -45,4 +45,8 @@ app.get('/:type(download|migrate)/:hash', function(req, res) {
   }
 });
 
+app.get('/status', function(req, res) {
+  res.status(200).send({ status: 'running' });
+});
+
 app.listen(3000);
