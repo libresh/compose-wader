@@ -26,7 +26,7 @@ var archiveIt = function(res, domain) {
 
   //this is the streaming magic
   archive.pipe(res);
-  archive.directory("/data/domains/" + domain, domain);
+  archive.directory("/data/domains/" + domain + "/data", domain + "/data");
   archive.finalize();
 }
 
